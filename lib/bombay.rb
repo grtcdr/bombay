@@ -49,6 +49,9 @@ class Directories
   def xdg_directories
     dirs = {}
     File.open(user_dirs_file).each do |line|
+      next if line.start_with?("#")
+      next if line.strip.empty?
+      
       entry = line.split("=")
       key = xdg_directory_type(entry.first)
       value = entry.last.unquote.expand.strip
