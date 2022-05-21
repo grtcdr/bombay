@@ -1,6 +1,6 @@
 # bombay
 
-bombay sorts the files in your working directory by filetype, and
+`bombay` sorts the files in your working directory by filetype, and
 sends them to their appropriate `$XDG_*_DIR`.
 
 ## Usage
@@ -39,9 +39,8 @@ summer-dance.gif funny-dialect.mp4
 ```
 
 `bombay` will parse your `$XDG_CONFIG_HOME/user-dirs.dirs` to locate
-the directories inside of which the files will be organized.
-
-Because of this, bombay is limited to Linux for the moment.
+the directories inside of which the files will be organized. Because
+of this, it is limited to /Linux/ for the moment.
 
 ## Installation
 
