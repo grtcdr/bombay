@@ -5,6 +5,12 @@
 `bombay` sorts the files in your working directory by filetype, and
 sends them to their appropriate `$XDG_*_DIR`.
 
+## Installation
+
+```
+gem install bombay
+```
+
 ## Usage
 
 Imagine you had this mess in your `~/Downloads`:
@@ -43,12 +49,6 @@ summer-dance.gif funny-dialect.mp4
 `bombay` will parse your `$XDG_CONFIG_HOME/user-dirs.dirs` to locate
 the directories inside of which the files will be organized. Because
 of this, it is limited to *Linux* for the moment.
-
-## Installation
-
-```
-gem install bombay
-```
 
 ## Copying
 
