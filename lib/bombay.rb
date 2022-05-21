@@ -4,6 +4,7 @@ require_relative "bombay/version"
 require_relative "bombay/string"
 
 require "fileutils"
+require "os"
 
 # This module exposes the methods used to organize your $(pwd).
 module Bombay
@@ -37,6 +38,10 @@ class Directories
     ENV["XDG_CONFIG_HOME"] || File.join(Dir.home, ".config")
   end
 
+  def xdg_directory_type(dir)
+    dir.delete_prefix("XDG_").delete_suffix("_DIR")
+  end
+
   def user_dirs_file
     File.join(config_directory, "user-dirs.dirs")
   end
@@ -45,18 +50,33 @@ class Directories
     dirs = {}
     File.open(user_dirs_file).each do |line|
       entry = line.split("=")
-      key = entry.first
+      key = xdg_directory_type(entry.first)
       value = entry.last.unquote.expand.strip
       dirs.store(key, value)
     end
     dirs
   end
 
+  def macos_directories
+    dirs = {}
+    dirs.store("DOCUMENTS", File.join(Dir.home, "Documents"))
+    dirs.store("PICTURES", File.join(Dir.home, "Pictures"))
+    dirs.store("VIDEOS", File.join(Dir.home, "Movies"))
+    dirs
+  end
+
   def initialize
-    dirs = xdg_directories
-    @documents = dirs["XDG_DOCUMENTS_DIR"]
-    @pictures = dirs["XDG_PICTURES_DIR"]
-    @videos = dirs["XDG_VIDEOS_DIR"]
+    dirs = if OS.linux?
+             xdg_directories
+           elsif OS.macos?
+             macos_directories
+           else
+             abort("Unsupported platform.")
+           end
+
+    @documents = dirs["DOCUMENTS"]
+    @pictures = dirs["PICTURES"]
+    @videos = dirs["VIDEOS"]
   end
 end
 
