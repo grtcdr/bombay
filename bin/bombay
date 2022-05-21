@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+#!/usr/bin/env ruby
+
+require "bombay"
+
+include Bombay
+
+# Parse and process user directories
+directories = Directories.new
+
+# Initialize filetypes
+filetypes = Filetypes.new
+
+# Group files by filetype
+pictures = filter_files(filetypes.pictures)
+videos = filter_files(filetypes.videos)
+documents = filter_files(filetypes.documents)
+
+# Stack files into their appropriate directory
+stack(pictures, directories.pictures)
+stack(videos, directories.videos)
+stack(documents, directories.documents)
