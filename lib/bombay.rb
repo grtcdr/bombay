@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "bombay/version"
+require_relative "bombay/string"
+
 require "fileutils"
 
 # This module exposes the methods used to organize your $(pwd).
@@ -36,26 +38,26 @@ class Directories
     ENV["XDG_CONFIG_HOME"] || File.join(Dir.home, ".config")
   end
 
-  def user_dirs
+  def user_dirs_file
     File.join(config_directory, "user-dirs.dirs")
   end
 
-  def parse_entry(line)
-    entry = line.split("=")
-    key = entry.first
-    value = entry.last.tr('"', "").gsub("$HOME", Dir.home).strip
-    [key, value]
+  def xdg_directories()
+    dirs = {}
+    File.open(user_dirs_file).each do |line|
+      entry = line.split("=")
+      key = entry.first
+      value = entry.last.unquote.expand.strip
+      dirs.store(key, value)
+    end
+    dirs
   end
 
   def initialize
-    File.open(user_dirs).each do |line|
-      xdg_dir = parse_entry(line)
-      case xdg_dir.first
-      when "XDG_DOCUMENTS_DIR" then @documents = xdg_dir.last
-      when "XDG_PICTURES_DIR" then @pictures = xdg_dir.last
-      when "XDG_VIDEOS_DIR" then @videos = xdg_dir.last
-      end
-    end
+    dirs = xdg_directories
+    @documents = dirs["XDG_DOCUMENTS_DIR"]
+    @pictures = dirs["XDG_PICTURES_DIR"]
+    @videos = dirs["XDG_VIDEOS_DIR"]
   end
 end
 

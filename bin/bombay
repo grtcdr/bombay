@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require "bombay"
-
 include Bombay
 
 # Parse and process user directories
