@@ -42,7 +42,7 @@ class Directories
     File.join(config_directory, "user-dirs.dirs")
   end
 
-  def xdg_directories()
+  def xdg_directories
     dirs = {}
     File.open(user_dirs_file).each do |line|
       entry = line.split("=")

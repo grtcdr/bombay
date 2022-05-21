@@ -4,11 +4,11 @@
 class String
   # Unquotes a string.
   def unquote
-    self.tr('"', "")
+    tr('"', "")
   end
 
   # Expands $HOME.
   def expand
-    self.gsub("$HOME", Dir.home)
+    gsub("$HOME", Dir.home)
   end
 end
