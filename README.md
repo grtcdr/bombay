@@ -40,7 +40,7 @@ summer-dance.gif funny-dialect.mp4
 
 `bombay` will parse your `$XDG_CONFIG_HOME/user-dirs.dirs` to locate
 the directories inside of which the files will be organized. Because
-of this, it is limited to /Linux/ for the moment.
+of this, it is limited to *Linux* for the moment.
 
 ## Installation
 
