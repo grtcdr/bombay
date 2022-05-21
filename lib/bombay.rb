@@ -21,7 +21,6 @@ module Bombay
     src_dir = FileUtils.pwd
 
     return if src_dir == dest_dir
-
     return if files.empty?
 
     FileUtils.mkdir(dest_dir) unless File.directory?(dest_dir)
