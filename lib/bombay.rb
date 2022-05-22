@@ -6,7 +6,8 @@ require_relative "bombay/string"
 require "fileutils"
 require "os"
 
-# This module exposes the methods used to organize your $(pwd).
+# This module exposes the methods used
+# to organize the working directory.
 module Bombay
   class Error < StandardError; end
 
@@ -30,7 +31,7 @@ module Bombay
   end
 end
 
-# Retrieves the values found inside $XDG_CONFIG_HOME/user-dirs.dirs.
+# Stores the system directories.
 class Directories
   attr_reader :pictures, :videos, :documents
 
@@ -83,8 +84,8 @@ class Directories
   end
 end
 
-# Defines the regular expressions used by bombay to
-# determine which folder a particular file belongs to.
+# Defines the regular expressions used by bombay to determine which
+# system directory a particular file belongs to.
 class Filetypes
   attr_reader :pictures, :videos, :documents
 
