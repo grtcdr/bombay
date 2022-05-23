@@ -16,7 +16,7 @@ gem install bombay
 Imagine you had this mess in your `~/Downloads`:
 
 ```bash
-$ ls -al ~/Downloads
+~/Downloads $ ls -al
 .
 ..
 badger-sock.pdf
@@ -26,23 +26,20 @@ student-steak.svg
 kind-vulture.epub
 funny-dialect.mp4
 summer-dance.gif
-[redacted]
 ```
 
-Let's tell `bombay` to clean it up:
+Run `bombay` to clean it up:
 
 ```bash
-~ $ cd Downloads
-
 ~/Downloads $ bombay
 
-~ $ ls ~/Pictures
+~/Downloads $ ls ~/Pictures
 parallel-muffin.png student-steak.svg virtual-monkey.webp
 
-~ $ ls ~/Documents
+~/Downloads $ ls ~/Documents
 badger-sock.pdf kind-vulture.epub
 
-~ $ ls ~/Videos
+~/Downloads $ ls ~/Videos
 summer-dance.gif funny-dialect.mp4
 ```
 
