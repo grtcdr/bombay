@@ -2,8 +2,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/bombay.svg)](https://badge.fury.io/rb/bombay)
 
-`bombay` sorts the files in your working directory by filetype, and
-sends them to their appropriate `$XDG_*_DIR`.
+`bombay` groups (stacks) the files in your working directory by
+filetype, and sends them to their appropriate `$XDG_*_DIR`.
 
 ## Installation
 
