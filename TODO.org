@@ -40,7 +40,7 @@ certain categories of files should go, e.g.:
 #+begin_example
 data: "~/Documents/data/"
 source: "~/Documents/source/"
-#+end_src
+#+end_example
 
 This helps minimize the saturation of ~$XDG_DOCUMENTS_DIR~ for all
 kinds of files, and helps us categorize filetypes more appropriately.
