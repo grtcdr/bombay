@@ -1,0 +1,57 @@
+#+TITLE: bombay's todo list
+
+* TODO Transparent I/O operations
+bombay is very rough around the edges when it comes to the
+transparency of the I/O operations it performs.
+
+It moves files without notifying the user, which could become an issue
+when the tool grows to accommodate more features; in other words,
+rendering it dangerous.
+
+Perhaps it should make no changes to the filesystem by default, only
+choosing to mutate it if and only if one accepts the changes it prints
+to the console.
+
+Example command-line interaction:
+#+begin_example
+$ bombay
+
+Changes:
+  /home/grtcdr/www/my-fluffy-cat.png => /home/grtcdr/images/my-fluffy-cat.png
+  /home/grtcdr/www/my-fluffy-bat.png => /home/grtcdr/images/my-fluffy-bat.png
+  /home/grtcdr/www/my-fluffy-rat.png => /home/grtcdr/images/my-fluffy-rat.png
+  /home/grtcdr/www/presentation.pptx => /home/grtcdr/documents/presentation.pptx
+
+I can stack them for you, would you like to proceed? [Y/n] y
+$ ls ~/documents/
+#+end_example
+
+* TODO Extended destination directories
+bombay as of now relocates images, documents and videos.
+
+Data formats such as JSON and TOML, and DSLs such as SQL and HTML, are
+not covered.
+
+Well HTML is covered, but it gets placed in ~$XDG_DOCUMENTS_DIR~, which
+doesn't make that much sense.
+
+bombay can benefit from a configuration file which dictates where
+certain categories of files should go, e.g.:
+#+begin_example
+data: "~/Documents/data/"
+source: "~/Documents/source/"
+#+end_src
+
+This helps minimize the saturation of ~$XDG_DOCUMENTS_DIR~ for all
+kinds of files, and helps us categorize filetypes more appropriately.
+
+* TODO Filetype detection reliability
+bombay currently detects the filetype through regular expressions, see
+[[file:lib/bombay.rb][Filetypes]].
+
+This isn't very reliable though, UNIX-like systems could care less
+about a file's extension. bombay can truly benefit from detecting
+filetypes through a more reliable method, perhaps we can leverage
+[[https://github.com/blackwinter/ruby-filemagic][ruby-filemagic]].
+
+* TODO Select which category to stack with command-line arguments
